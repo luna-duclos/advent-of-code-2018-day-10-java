@@ -22,4 +22,9 @@ public class Point {
     public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
     }
+
+    public void advance() {
+        location.setX(location.getX() + velocity.getX());
+        location.setY(location.getY() + velocity.getY());
+    }
 }

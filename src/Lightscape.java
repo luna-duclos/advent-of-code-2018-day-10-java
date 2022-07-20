@@ -40,8 +40,8 @@ public class Lightscape {
         }
 
         // We now have a min, max and a list of locations, we can print our grid
-        for (int x = min.getX(); x <= max.getX(); x++) {
-            for (int y = min.getY(); y <= max.getY(); y++) {
+        for (int y = min.getY(); y <= max.getY(); y++) {
+            for (int x = min.getX(); x <= max.getX(); x++) {
                 if (lights.contains(new Vector2(x, y))) {
                     System.out.print('#');
                 } else {

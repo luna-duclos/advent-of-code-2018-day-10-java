@@ -27,4 +27,9 @@ public class Point {
         location.setX(location.getX() + velocity.getX());
         location.setY(location.getY() + velocity.getY());
     }
+
+    public void rewind() {
+        location.setX(location.getX() - velocity.getX());
+        location.setY(location.getY() - velocity.getY());
+    }
 }

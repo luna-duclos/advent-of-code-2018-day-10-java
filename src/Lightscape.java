@@ -25,9 +25,16 @@ public class Lightscape {
     }
 
     public void advance() {
-        // Actually advance all points
         for (Point p : points) {
             p.advance();
+        }
+
+        computeMinMax();
+    }
+
+    public void rewind() {
+        for (Point p : points) {
+            p.rewind();
         }
 
         computeMinMax();

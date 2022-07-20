@@ -45,8 +45,12 @@ public class Main {
         Vector2 currSize = prevSize;
         do {
             s.advance();
+            prevSize = currSize;
             currSize = s.getSize();
         } while (currSize.getX() < prevSize.getX() && currSize.getY() < prevSize.getY());
+
+        // Now that we're done looping, rewind one step, as we're one too far ahead, then print
+        s.rewind();
         s.print();
     }
 }

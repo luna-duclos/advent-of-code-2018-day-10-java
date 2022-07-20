@@ -40,14 +40,13 @@ public class Main {
                 new Point(new Vector2(-3,  6), new Vector2(2, -1))
         )));
 
-        // Setup an infite loop
-        // We don't want to go too fast that our user can't follow, so we'll wait each iteration for user input
-        s.print();
-        Scanner scanner = new Scanner(System.in);
-        while(true) {
-            scanner.nextLine();
+        // Setup a loop that continues as long as the lightscape is shrinking
+        Vector2 prevSize = s.getSize();
+        Vector2 currSize = prevSize;
+        do {
             s.advance();
-            s.print();
-        }
+            currSize = s.getSize();
+        } while (currSize.getX() < prevSize.getX() && currSize.getY() < prevSize.getY());
+        s.print();
     }
 }

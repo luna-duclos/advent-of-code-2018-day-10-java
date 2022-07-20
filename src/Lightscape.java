@@ -4,24 +4,34 @@ import java.util.Set;
 
 public class Lightscape {
     private ArrayList<Point> points;
-
+    private Vector2 min;
+    private Vector2 max;
 
     public Lightscape(ArrayList<Point> points) {
         this.points = points;
     }
 
+    public Vector2 getMin() {
+        return min;
+    }
+
+    public Vector2 getMax() {
+        return max;
+    }
+
+    public Vector2 getSize() {
+        return new Vector2(-min.getX() + max.getX(), -min.getY() + max.getY());
+    }
+
     public void advance() {
+        // Actually advance all points
         for (Point p : points) {
             p.advance();
         }
-    }
 
-    public void print() {
-        // To print, we figure out where the points currently are and what spaces are currently empty.
-        Set<Vector2> lights = new HashSet<>();
-
-        Vector2 min = new Vector2(0, 0),
-                max = new Vector2(0, 0);
+        // Compute new min and max coordinates for the lightscape
+        min = new Vector2(0, 0);
+        max = new Vector2(0, 0);
 
         for (Point p : points) {
             Vector2 loc = p.getLocation();
@@ -35,8 +45,15 @@ public class Lightscape {
                 max.setX(loc.getX());
             if (max.getY() < loc.getY())
                 max.setY(loc.getY());
+        }
+    }
 
-            lights.add(loc);
+    public Vector2 print() {
+        // To print, we figure out where the points currently are and what spaces are currently empty.
+        Set<Vector2> lights = new HashSet<>();
+
+        for (Point p : points) {
+            lights.add(p.getLocation());
         }
 
         // We now have a min, max and a list of locations, we can print our grid
@@ -51,5 +68,8 @@ public class Lightscape {
 
             System.out.println("");
         }
+
+        // Return the grid size so the caller
+        return new Vector2(-min.getX() + max.getX(), -min.getY() + max.getY());
     }
 }

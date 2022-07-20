@@ -9,6 +9,7 @@ public class Lightscape {
 
     public Lightscape(ArrayList<Point> points) {
         this.points = points;
+        computeMinMax();
     }
 
     public Vector2 getMin() {
@@ -29,6 +30,10 @@ public class Lightscape {
             p.advance();
         }
 
+        computeMinMax();
+    }
+
+    private void computeMinMax() {
         // Compute new min and max coordinates for the lightscape
         min = new Vector2(0, 0);
         max = new Vector2(0, 0);
